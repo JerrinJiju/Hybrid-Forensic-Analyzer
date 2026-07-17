@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Analyzer</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f9;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 2px dashed #3498db;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .file-info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>File Analyzer</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        
+        <label for="file-upload" class="custom-file-upload">
+            Click to Select File
+        </label>
+        <input id="file-upload" type="file" name="file" required>
+
+        <div class="file-info" id="fileInfo">
+            No file selected
+        </div>
+
+        <br>
+        <button type="submit" id="analyzeBtn" disabled>Analyze File</button>
+    </form>
+
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</div>
+
+<script>
+    const fileInput = document.getElementById("file-upload");
+    const fileInfo = document.getElementById("fileInfo");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+
+    fileInput.addEventListener("change", function() {
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            fileInfo.innerHTML = 
+                "Selected File: <b>" + file.name + 
+                "</b><br>Size: " + (file.size / 1024).toFixed(2) + " KB";
+
+            analyzeBtn.disabled = false;
+        } else {
+            fileInfo.innerHTML = "No file selected";
+            analyzeBtn.disabled = true;
+        }
+    });
+</script>
+
+</body>
+</html>

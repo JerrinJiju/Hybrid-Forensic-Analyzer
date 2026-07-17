@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Hybrid Forensic Analyzer</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background-image: url("{{ url_for('static', filename='images/home.jpg') }}");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height:100vh;
+color:white;
+text-align:center;
+margin:0;
+padding:0;
+}
+
+/* Main container */
+
+.container{
+width:70%;
+margin:auto;
+padding-top:100px;
+}
+
+/* Title */
+
+h1{
+font-size:48px;
+color:#38bdf8;
+margin-bottom:30px;
+font-weight:bold;
+}
+
+/* Paragraph */
+
+p{
+text-align:justify;
+line-height:1.7;
+font-size:17px;
+}
+
+/* Buttons */
+
+button{
+padding:12px 25px;
+margin:15px;
+font-size:16px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e40af;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Hybrid Forensic Analyzer</h1>
+
+<p>
+Hybrid Forensic Analyzer is a web-based cyber forensics platform designed to assist investigators in analyzing digital evidence efficiently. The system allows registered users to upload and analyze files and images to extract important forensic information such as file hashes, metadata, and potential anomalies. The platform integrates multiple forensic tools including a file analyzer, image analyzer, and an investigator dashboard. The file analyzer helps generate cryptographic hash values to verify evidence integrity, while the image analyzer extracts metadata and detects suspicious patterns within digital images. The system also includes a secure investigator mode that is accessible only to authorized administrators, allowing them to review investigation results, manage evidence, and generate forensic reports. By combining multiple analysis techniques into a single platform, the Hybrid Forensic Analyzer helps streamline the digital investigation process and supports efficient evidence examination in cybercrime investigations.
+</p>
+
+<br>
+
+<a href="/login">
+<button>Login</button>
+</a>
+
+<a href="/register">
+<button>Register</button>
+</a>
+
+</div>
+
+</body>
+</html>

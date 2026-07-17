@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Download Reports</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e40af;
+}
+
+.report-box{
+background:#1e293b;
+padding:15px;
+margin:10px;
+border-radius:8px;
+width:400px;
+margin-left:auto;
+margin-right:auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Download Reports</h1>
+
+<br>
+
+<a href="{{ url_for('download_all') }}">
+<button>Download Combined Report</button>
+</a>
+
+<hr>
+
+{% for r in reports %}
+
+<div class="report-box">
+
+<p>{{ r }}</p>
+
+<a href="{{ url_for('download_report', filename=r) }}">
+<button>Download</button>
+</a>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

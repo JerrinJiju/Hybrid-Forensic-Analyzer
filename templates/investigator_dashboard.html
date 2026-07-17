@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Investigator Dashboard</title>
+
+<style>
+
+body{
+font-family: Arial;
+background-image: url("{{ url_for('static', filename='images/dashboard.jpg') }}");
+background-size: cover;
+background-position: center;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+table{
+width:80%;
+margin:auto;
+border-collapse:collapse;
+background:white;
+color:black;
+}
+
+th, td{
+padding:15px;
+border:1px solid #ccc;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+button{
+padding:10px 20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1e40af;
+}
+
+.back-btn{
+margin-top:20px;
+}
+
+.logout-btn{
+margin-top:15px;
+}
+
+.logout-btn button{
+background:#dc2626;
+}
+
+.logout-btn button:hover{
+background:#991b1b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Investigator Dashboard</h1>
+
+<table>
+
+<tr>
+<th>Report File</th>
+<th>Download</th>
+</tr>
+
+{% for report in reports %}
+<tr>
+<td>{{ report }}</td>
+<td>
+<a href="{{ url_for('download_report', filename=report) }}">
+<button>Download</button>
+</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<!-- ✅ BACK BUTTON -->
+<div class="back-btn">
+<button onclick="goBack()">⬅ Back</button>
+</div>
+
+<!-- ✅ LOGOUT BUTTON -->
+<div class="logout-btn">
+<a href="/investigator-logout">
+<button>Logout</button>
+</a>
+</div>
+
+<script>
+function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "/dashboard";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Image Analysis Report</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+/* 🔥 Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2c2c3e);
+    color: #f5f5f5;
+}
+
+/* Center everything */
+.report-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Card */
+.report-card {
+    background: #2a2a3d;
+    padding: 40px;
+    border-radius: 12px;
+    width: 70%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Title */
+.report-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #00d4ff;
+}
+
+/* Labels */
+.report-label {
+    font-weight: bold;
+    color: #9ecfff;
+}
+
+/* Sections */
+.report-section h2 {
+    margin-top: 30px;
+    color: #00ffcc;
+}
+
+/* Divider */
+.report-divider {
+    border: none;
+    height: 1px;
+    background: #444;
+    margin: 25px 0;
+}
+
+/* Warning */
+.report-warning {
+    color: #ffcc00;
+}
+
+/* Danger */
+.report-danger {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+/* List */
+ul {
+    padding-left: 0;
+}
+
+/* Buttons */
+.report-btn {
+    display: inline-block;
+    margin: 15px 10px;
+    padding: 12px 25px;
+    text-decoration: none;
+    background: linear-gradient(135deg, #00d4ff, #007bff);
+    color: white;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.report-btn:hover {
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="report-container">
+
+<div class="report-card">
+
+<h1 class="report-title">🔍 Image Analysis Report</h1>
+
+<p><span class="report-label">File Name:</span> {{ filename }}</p>
+
+<p><span class="report-label">SHA256 Hash:</span> {{ sha256 }}</p>
+
+<p><span class="report-label">Camera Model:</span> {{ camera }}</p>
+
+<p><span class="report-label">Timestamp:</span> {{ timestamp }}</p>
+
+<p><span class="report-label">GPS Info:</span> {{ gps }}</p>
+
+<hr class="report-divider">
+
+<div class="report-section">
+
+<h2>🧪 Advanced Forensic Checks</h2>
+
+<p>
+<span class="report-label">Metadata Check:</span>
+<span class="report-warning">{{ metadata_warning }}</span>
+</p>
+
+<p>
+<span class="report-label">Hidden Data Detection:</span>
+{{ stego_result }}
+</p>
+
+<p>
+<span class="report-label">Reverse Image Investigation:</span>
+{{ similarity_result }}
+</p>
+
+</div>
+
+<hr class="report-divider">
+
+<div class="report-section">
+
+<h2>🧠 AI Evidence Detection</h2>
+
+<ul style="list-style-position: inside;">
+{% for item in evidence_detected %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+<hr class="report-divider">
+
+<div class="report-section">
+
+<h2>⚠ Recommendation</h2>
+
+<p class="report-danger">{{ recommendation }}</p>
+
+</div>
+
+<!-- ✅ DOWNLOAD BUTTON -->
+<a href="/download/{{ report_name }}" class="report-btn">⬇ Download Report</a>
+
+<!-- ✅ NEW BACK BUTTON -->
+<button onclick="goBack()" class="report-btn">⬅ Back</button>
+
+</div>
+
+</div>
+
+<!-- ✅ SCRIPT ADDED HERE -->
+<script>
+function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "/dashboard";
+    }
+}
+</script>
+
+</body>
+</html>

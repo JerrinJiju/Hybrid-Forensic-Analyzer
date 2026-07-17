@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>File Analysis Report</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+/* 🌌 Premium background */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', sans-serif;
+    color: #f1f1f1;
+}
+
+/* Card */
+.report-card {
+    width: 65%;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 40px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+/* Title */
+h1 {
+    color: #00e6e6;
+}
+
+/* Labels */
+.label {
+    color: #9be7ff;
+    font-weight: bold;
+}
+
+/* Sections */
+.section {
+    margin-top: 25px;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    margin: 15px;
+    padding: 12px 25px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #00e6e6, #007bff);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="report-card">
+
+<h1>📄 File Analysis Report</h1>
+
+<div class="section">
+<p><span class="label">File Name:</span> {{ filename }}</p>
+<p><span class="label">SHA256:</span> {{ sha256 }}</p>
+</div>
+
+<div class="section">
+
+<h2>Threats Detected</h2>
+
+{% if threats %}
+<ul>
+{% for t in threats %}
+<li>{{ t }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No known threats detected.</p>
+{% endif %}
+
+</div>
+
+<div class="section">
+
+<h2>Risk Level</h2>
+
+<p>{{ risk }}</p>
+
+</div>
+
+<div class="section">
+
+<h2>Recommendation</h2>
+
+<p>{{ recommendation }}</p>
+
+</div>
+
+<!-- ✅ FIXED DOWNLOAD BUTTON -->
+<a href="{{ url_for('download_report', filename=report_name) }}" class="button">
+⬇ Download Report
+</a>
+
+<!-- ✅ BACK BUTTON -->
+<button onclick="goBack()" class="button">⬅ Back</button>
+
+</div>
+
+<script>
+function goBack() {
+    if (document.referrer !== "") {
+        window.history.back();
+    } else {
+        window.location.href = "/dashboard";
+    }
+}
+</script>
+
+</body>
+</html>
